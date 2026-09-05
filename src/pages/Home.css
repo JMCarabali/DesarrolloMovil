@@ -1,0 +1,36 @@
+.task-page {
+	--page-max-width: 760px;
+	max-width: var(--page-max-width);
+	margin: 0 auto;
+	padding-bottom: 48px;
+}
+
+.task-intro { padding: 28px 0 22px; }
+.eyebrow { color: var(--ion-color-primary); font-size: 11px; font-weight: 800; letter-spacing: 1.5px; margin: 0 0 8px; }
+.task-intro h1 { color: var(--ink); font-family: Georgia, serif; font-size: 42px; font-weight: 400; margin: 0; }
+.hero-copy { color: var(--muted); font-size: 15px; margin: 8px 0 0; }
+
+.task-form { align-items: flex-end; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; display: flex; gap: 10px; padding: 14px; }
+.task-input { --highlight-color: var(--ion-color-primary); --padding-start: 0; flex: 1; }
+.task-form ion-button { --border-radius: 12px; height: 50px; margin: 0; width: 50px; }
+.list-heading { align-items: center; display: flex; justify-content: space-between; margin: 32px 0 12px; }
+.list-heading h2 { color: var(--ink); font-family: Georgia, serif; font-size: 26px; font-weight: 400; margin: 0; }
+.list-heading span { color: var(--muted); font-size: 14px; }
+.task-list { display: grid; gap: 10px; }
+.task-item { --background: var(--surface); --border-radius: 14px; --inner-padding-end: 8px; --padding-start: 14px; border: 1px solid var(--line); box-shadow: 0 8px 20px rgba(35, 43, 32, .04); transition: opacity .2s ease, transform .2s ease; }
+.task-item.is-complete { opacity: .62; }
+.task-check { align-items: center; background: transparent; border: 2px solid #b6c2b0; border-radius: 50%; color: white; display: flex; flex: 0 0 24px; font-size: 15px; height: 24px; justify-content: center; margin-right: 13px; overflow: hidden; position: relative; width: 24px; }
+.is-complete .task-check { background: var(--ion-color-primary); border-color: var(--ion-color-primary); }
+.task-item ion-label { cursor: pointer; padding: 14px 0; }
+.task-item h3 { color: var(--ink); font-size: 16px; font-weight: 650; margin: 0 0 3px; }
+.is-complete h3 { text-decoration: line-through; }
+.task-item p { color: var(--muted); font-size: 12px; margin: 0; }
+.empty-state { background: var(--surface); border: 1px dashed #bdc9b7; border-radius: 18px; padding: 42px 20px; text-align: center; }
+.empty-icon { align-items: center; background: #e7eee3; border-radius: 50%; color: var(--ion-color-primary); display: inline-flex; font-size: 25px; height: 48px; justify-content: center; margin-bottom: 12px; width: 48px; }
+.empty-state h3 { color: var(--ink); font-family: Georgia, serif; font-size: 22px; font-weight: 400; margin: 0; }
+.empty-state p { font-size: 14px; margin: 6px 0 0; }
+
+@media (max-width: 520px) {
+	.task-intro { padding-top: 20px; }
+	.task-intro h1 { font-size: 36px; }
+}
