@@ -6,6 +6,7 @@ import ListaContactos from './ListaContactos';
 import FormularioContacto from './FormularioContacto';
 import './App.css';
 
+
 function App() {
 
   // Estado que indica si estamos "cargando" los datos iniciales
@@ -50,6 +51,8 @@ function App() {
 
   return (<>
     <h1> Mis Contactos </h1>
+
+     <img src="/images.png" alt="Contactos" width="80" />
 
     {
       // Si está cargando, mostramos el Loader.
