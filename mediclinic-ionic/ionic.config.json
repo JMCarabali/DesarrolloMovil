@@ -1,0 +1,7 @@
+{
+  "name": "mediclinic-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
