@@ -5,6 +5,10 @@ import AuthPage from './pages/AuthPage';
 import TaskDetailPage from './pages/TaskDetailPage';
 import TaskEditorPage from './pages/TaskEditorPage';
 import TasksPage from './pages/TasksPage';
+import DashboardPage from './pages/DashboardPage';
+import ContactsPage from './pages/ContactsPage';
+import ContactEditorPage from './pages/ContactEditorPage';
+import FruitsPage from './pages/FruitsPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import { TaskProvider } from './context/TaskContext';
@@ -35,8 +39,12 @@ const App = () => (
             <Route path="/tasks/new" element={<ProtectedRoute><TaskEditorPage /></ProtectedRoute>} />
             <Route path="/tasks/:id" element={<ProtectedRoute><TaskDetailPage /></ProtectedRoute>} />
             <Route path="/tasks/:id/edit" element={<ProtectedRoute><TaskEditorPage /></ProtectedRoute>} />
-            <Route path="/" element={<Navigate to="/tasks" replace />} />
-            <Route path="*" element={<Navigate to="/tasks" replace />} />
+            <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+            <Route path="/contacts" element={<ProtectedRoute><ContactsPage /></ProtectedRoute>} />
+            <Route path="/contacts/new" element={<ProtectedRoute><ContactEditorPage /></ProtectedRoute>} />
+            <Route path="/fruits" element={<ProtectedRoute><FruitsPage /></ProtectedRoute>} />
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </IonRouterOutlet>
         </IonReactRouter>
       </IonApp>

@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getAnalytics, isSupported } from 'firebase/analytics';
 import { getAuth } from 'firebase/auth';
 import { initializeFirestore } from 'firebase/firestore';
+import { getDatabase } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCHtFEUC58LTEVOaiaC7wj7-FQkFm84c14',
@@ -17,4 +18,5 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const db = initializeFirestore(app, { experimentalForceLongPolling: true });
+export const realtimeDb = getDatabase(app);
 export const analytics = isSupported().then((supported) => (supported ? getAnalytics(app) : null));

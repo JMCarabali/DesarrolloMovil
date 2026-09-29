@@ -47,6 +47,12 @@
 .detail-page { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; margin-top: 32px; padding: 28px; }
 .detail-copy { color: var(--muted); font-size: 17px; line-height: 1.7; white-space: pre-wrap; }
 .route-loading { align-items: center; display: flex; height: 100vh; justify-content: center; }
+.network-status { align-items: center; border-radius: 10px; display: flex; gap: 8px; margin-bottom: 22px; padding: 10px 12px; width: fit-content; }
+.network-status.online { background: #e7eee3; color: var(--ion-color-primary); }
+.network-status.offline { background: #fff0ed; color: #b94a3b; }
+.dashboard-grid { display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr); margin-top: 20px; }
+.dashboard-card { --border-radius: 14px; height: 100px; margin: 0; }
+.dashboard-card small { display: block; font-size: 11px; margin-left: 6px; opacity: .75; }
 
 @media (max-width: 520px) {
 	.auth-panel { padding: 26px 20px; }
@@ -56,4 +62,5 @@
 @media (max-width: 520px) {
 	.task-intro { padding-top: 20px; }
 	.task-intro h1 { font-size: 36px; }
+	.dashboard-grid { grid-template-columns: 1fr; }
 }

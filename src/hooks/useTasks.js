@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-
-const storageKey = (userId) => `challenge-05-tasks-${userId}`;
+import { onValue, push, ref, remove, set } from 'firebase/database';
+import { realtimeDb } from '../firebase/config';
 
 export const useTasks = (userId) => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(Boolean(userId));
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!userId) {
@@ -13,34 +14,40 @@ export const useTasks = (userId) => {
       return undefined;
     }
 
-    const saved = localStorage.getItem(storageKey(userId));
-    setTasks(saved ? JSON.parse(saved) : []);
-    setLoading(false);
-    return undefined;
+    setLoading(true);
+    setError(null);
+    const tasksRef = ref(realtimeDb, `tasks/${userId}`);
+    return onValue(tasksRef, (snapshot) => {
+      const value = snapshot.val() || {};
+      setTasks(Object.entries(value).map(([id, task]) => ({ id, ...task })).sort((a, b) => b.createdAt - a.createdAt));
+      setLoading(false);
+    }, (snapshotError) => {
+      setError(snapshotError.message);
+      setLoading(false);
+    });
   }, [userId]);
-
-  const saveLocal = (nextTasks) => {
-    setTasks(nextTasks);
-    if (userId) localStorage.setItem(storageKey(userId), JSON.stringify(nextTasks));
-  };
 
   const addTask = async (title, description = '') => {
     if (!userId) throw new Error('Debes iniciar sesion para crear tareas.');
-    const task = { title, description, completed: false, userId, createdAt: Date.now() };
-    saveLocal([{ id: crypto.randomUUID(), ...task }, ...tasks]);
+    const taskRef = push(ref(realtimeDb, `tasks/${userId}`));
+    await set(taskRef, { title, description, completed: false, userId, createdAt: Date.now() });
   };
 
   const updateTask = async (id, changes) => {
     if (!id) throw new Error('No se encontro el identificador de la tarea.');
-    saveLocal(tasks.map((task) => task.id === id ? { ...task, ...changes } : task));
+    await set(ref(realtimeDb, `tasks/${userId}/${id}`), { ...tasks.find((task) => task.id === id), ...changes, userId });
   };
 
   const deleteTask = async (id) => {
     if (!id) throw new Error('No se encontro el identificador de la tarea.');
-    saveLocal(tasks.filter((task) => task.id !== id));
+    await remove(ref(realtimeDb, `tasks/${userId}/${id}`));
   };
 
-  const toggleTask = (task) => updateTask(task.id, { completed: !task.completed });
+  const toggleTask = (id) => {
+    const task = tasks.find((item) => item.id === id);
+    if (!task) throw new Error('No se encontro la tarea que quieres actualizar.');
+    return updateTask(id, { completed: !task.completed });
+  };
 
-  return { tasks, loading, addTask, updateTask, deleteTask, toggleTask };
+  return { tasks, loading, error, addTask, updateTask, deleteTask, toggleTask };
 };

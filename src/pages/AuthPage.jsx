@@ -33,7 +33,7 @@ const AuthPage = ({ mode }) => {
       <IonContent fullscreen>
         <main className="auth-page">
           <section className="auth-panel">
-            <p className="eyebrow">FOCUS LIST / CHALLENGE 05</p>
+            <p className="eyebrow">FOCUS LIST / CHALLENGE 06</p>
             <h1>{isRegister ? 'Crea tu cuenta' : 'Vuelve a tus tareas'}</h1>
             <p className="hero-copy">Organiza lo importante y avanza con claridad.</p>
             <form className="auth-form" onSubmit={handleSubmit}>

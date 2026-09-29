@@ -3,6 +3,7 @@ import { IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonInput, 
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { IonText } from '@ionic/react';
 import { useTaskContext } from '../context/TaskContext';
+import { useNetwork } from '../hooks/useNetwork';
 import './Home.css';
 
 const TaskEditorPage = () => {
@@ -10,6 +11,7 @@ const TaskEditorPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { tasks, addTask, updateTask } = useTaskContext();
+  const { isOnline } = useNetwork();
   const isCreating = location.pathname.endsWith('/new');
   const editingTask = tasks.find((task) => task.id === id);
   const [title, setTitle] = useState(editingTask?.title || '');
@@ -29,6 +31,7 @@ const TaskEditorPage = () => {
     if (!cleanTitle) return;
     setError('');
     try {
+      if (!isOnline) throw new Error('Necesitas conexión para guardar tareas.');
       if (isCreating) await addTask(cleanTitle, description.trim());
       else if (id) await updateTask(id, { title: cleanTitle, description: description.trim() });
       else throw new Error('No se encontro la tarea que quieres editar.');
@@ -41,7 +44,7 @@ const TaskEditorPage = () => {
   return (
     <IonPage>
       <IonHeader><IonToolbar><IonButtons slot="start"><IonBackButton defaultHref="/tasks" /></IonButtons><IonTitle>{isCreating ? 'Nueva tarea' : 'Editar tarea'}</IonTitle></IonToolbar></IonHeader>
-      <IonContent fullscreen><main className="editor-page ion-padding"><form className="editor-form" onSubmit={handleSubmit}><IonInput label="Titulo" labelPlacement="stacked" value={title} onIonInput={(event) => setTitle(event.detail.value ?? '')} maxlength="80" required /><IonTextarea label="Descripcion" labelPlacement="stacked" value={description} onIonInput={(event) => setDescription(event.detail.value ?? '')} autoGrow />{error && <IonText color="danger"><p className="form-error">{error}</p></IonText>}<IonButton type="submit" expand="block">Guardar tarea</IonButton></form></main></IonContent>
+      <IonContent fullscreen><main className="editor-page ion-padding"><form className="editor-form" onSubmit={handleSubmit}><IonInput label="Titulo" labelPlacement="stacked" value={title} onIonInput={(event) => setTitle(event.detail.value ?? '')} maxlength="80" required /><IonTextarea label="Descripcion" labelPlacement="stacked" value={description} onIonInput={(event) => setDescription(event.detail.value ?? '')} autoGrow />{error && <IonText color="danger"><p className="form-error">{error}</p></IonText>}<IonButton type="submit" expand="block" disabled={!isOnline}>Guardar tarea</IonButton></form></main></IonContent>
     </IonPage>
   );
 };
