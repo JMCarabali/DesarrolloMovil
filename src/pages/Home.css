@@ -30,6 +30,29 @@
 .empty-state h3 { color: var(--ink); font-family: Georgia, serif; font-size: 22px; font-weight: 400; margin: 0; }
 .empty-state p { font-size: 14px; margin: 6px 0 0; }
 
+.list-heading > div { display: grid; gap: 4px; }
+.list-heading ion-button { --border-radius: 10px; margin: 0; }
+.list-heading ion-button ion-icon { font-size: 18px; }
+.auth-page { align-items: center; background: radial-gradient(circle at 85% 15%, #dce9d5 0, transparent 30%), var(--ion-background-color); display: flex; min-height: 100%; justify-content: center; padding: 24px; }
+.auth-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 20px 50px rgba(35, 43, 32, .08); max-width: 440px; padding: 36px; width: 100%; }
+.auth-panel h1, .detail-page h1 { color: var(--ink); font-family: Georgia, serif; font-size: 38px; font-weight: 400; margin: 0; }
+.auth-form, .editor-form { display: grid; gap: 18px; margin-top: 28px; }
+.auth-form ion-input, .editor-form ion-input, .editor-form ion-textarea { --background: #f8faf6; --border-color: var(--line); --border-radius: 10px; --highlight-color: var(--ion-color-primary); --padding-bottom: 12px; --padding-end: 12px; --padding-start: 12px; --padding-top: 12px; border: 1px solid var(--line); border-radius: 10px; }
+.auth-form ion-button, .editor-form ion-button { --border-radius: 10px; margin: 0; }
+.form-error { font-size: 13px; margin: 0; }
+.auth-switch { color: var(--muted); font-size: 14px; margin: 24px 0 0; text-align: center; }
+.auth-switch a { color: var(--ion-color-primary); font-weight: 700; }
+.editor-page, .detail-page { margin: 0 auto; max-width: 720px; padding-top: 36px; }
+.editor-form { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+.detail-page { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; margin-top: 32px; padding: 28px; }
+.detail-copy { color: var(--muted); font-size: 17px; line-height: 1.7; white-space: pre-wrap; }
+.route-loading { align-items: center; display: flex; height: 100vh; justify-content: center; }
+
+@media (max-width: 520px) {
+	.auth-panel { padding: 26px 20px; }
+	.auth-panel h1, .detail-page h1 { font-size: 32px; }
+}
+
 @media (max-width: 520px) {
 	.task-intro { padding-top: 20px; }
 	.task-intro h1 { font-size: 36px; }
