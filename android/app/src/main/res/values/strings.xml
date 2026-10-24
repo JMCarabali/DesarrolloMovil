@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Misiones UAO</string>
+    <string name="title_activity_main">Misiones UAO</string>
+    <string name="package_name">edu.uao.misiones</string>
+    <string name="custom_url_scheme">edu.uao.misiones</string>
+</resources>

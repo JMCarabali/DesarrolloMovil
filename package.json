@@ -1,0 +1,11 @@
+{
+  "name": "misiones-uao",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": { "dev": "vite --host 0.0.0.0", "build": "vite build", "preview": "vite preview --host 0.0.0.0", "android:sync": "npm run build && cap sync android", "android:open": "cap open android" },
+  "dependencies": {
+    "@capacitor/android": "^8.5.3", "@capacitor/camera": "^8.2.6", "@capacitor/core": "^8.5.3", "@capacitor/geolocation": "^8.2.4", "@capacitor/haptics": "^8.0.2", "@capacitor/local-notifications": "^8.3.1", "@capacitor/motion": "^8.0.1", "@ionic/react": "^9.0.9", "firebase": "^12.1.0", "ionicons": "^8.1.0", "react": "^19.3.1", "react-dom": "^19.3.1"
+  },
+  "devDependencies": { "@capacitor/cli": "^8.5.3", "@vitejs/plugin-react": "^6.1.2", "vite": "^8.3.4" }
+}
